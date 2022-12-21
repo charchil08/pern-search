@@ -14,7 +14,7 @@ app.get("/users", async (req, res) => {
         const { name } = req.query;
         const { rows: users } = await pool.query("SELECT * FROM users WHERE CONCAT(first_name,' ',last_name) ILIKE $1", [`%${name}%`])
 
-        return res.json(users[0]);
+        return res.json(users);
     }
     catch (err) {
         console.error(err.message)
